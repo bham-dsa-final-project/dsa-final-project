@@ -1,3 +1,20 @@
+# Here we are going to ask hashicorp for the access and secret keys that are stored as variables in the workspace. We need to create a terraform block that houses the access key information
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.55.0"
+    }
+  }
+  cloud {
+    organization = "dsa_final_project"
+
+    workspaces {
+      name = "dsa-final-project"
+    }
+  }
+}
+
 provider "aws" {
   region = var.region
 }
