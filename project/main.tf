@@ -1,5 +1,46 @@
+# Here we are going to ask hashicorp for the access and secret keys that are stored as variables in the workspace. We need to create a terraform block that houses the access key information
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.55.0"
+    }
+  }
+  cloud {
+    organization = "dsa_final_project"
+
+    workspaces {
+      name = "dsa-final-project"
+    }
+  }
+}
+
 provider "aws" {
-  region = var.region
+  region     = var.region
+  access_key = var.AWS_ACCESS_KEY_ID
+  secret_key = var.AWS_SECRET_ACCESS_KEY
+}
+
+# I am unsure if the below vault code is needed - will test with team when they clone down to see if they can run a plan without it
+
+# provider "vault" {
+#   address     = "https://birmingham-dsa-cluster-public-vault-86e0f2b3.201d549e.z1.hashicorp.cloud:8200"
+#   token       = var.vault_token
+#   max_retries = 5
+# }
+
+# data "vault_generic_secret" "vault_secret_path" {
+#   path = "finalproject/access"
+# }
+
+# output "vault_secrets" {
+#   value     = data.vault_generic_secret.vault_secret_path.data
+#   sensitive = true
+# }
+
+resource "aws_instance" "ec2_instance" {
+  ami           = "ami-0fe310dde2a8fdc5c"
+  instance_type = "t2.micro"
 }
 
 module "vpc" {
