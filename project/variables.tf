@@ -50,3 +50,22 @@ variable "private_subnet_cidr_blocks" {
   type        = list(string)
   default     = ["10.0.3.0/24", "10.0.4.0/24"]
 }
+
+# variable "vault_token" {
+#   description = "The token for the Vault cluster"
+#   type        = string
+#   sensitive   = true
+#   default     = ""
+# }
+
+variable "AWS_SECRET_ACCESS_KEY" {
+  type        = string
+  description = "AWS Secret Access Key"
+  sensitive   = true
+}
+
+variable "AWS_ACCESS_KEY_ID" {
+  type        = string
+  description = "AWS Access Key ID"
+  sensitive   = true
+}
