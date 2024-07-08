@@ -21,6 +21,8 @@ provider "aws" {
   secret_key = var.AWS_SECRET_ACCESS_KEY
 }
 
+provider "hcp" {}
+
 # I am unsure if the below vault code is needed - will test with team when they clone down to see if they can run a plan without it
 
 # provider "vault" {
@@ -86,55 +88,57 @@ resource "aws_instance" "ec2_instance" {
 #   ]
 # }
 
-module "iam" {
-  source                    = "../modules/iam" # Updated relative path
-  ec2_role_name             = "ec2-role"
-  ec2_instance_profile_name = "ec2-instance-profile"
-  ec2_policy_name           = "ec2-policy"
-  ec2_policy_document = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Action" : [
-          "s3:ListBucket",
-          "s3:GetObject"
-        ],
-        "Effect" : "Allow",
-        "Resource" : "*"
-      }
-    ]
-  })
-}
 
-module "ec2" {
-  source               = "../modules/ec2" # Updated relative path
-  vpc_id               = module.vpc.vpc_id
-  public_subnet1       = element(module.vpc.public_subnet_ids, 0)
-  public_subnet2       = element(module.vpc.public_subnet_ids, 1)
-  private_subnet1      = element(module.vpc.private_subnet_ids, 0)
-  private_subnet2      = element(module.vpc.private_subnet_ids, 1)
-  instance_count       = var.instance_count
-  instance_type        = var.instance_type
-  ec2_key_pair         = var.ec2_key_pair
-  security_group_id    = module.security_groups.ec2_security_group_id
-  iam_instance_profile = module.iam.ec2_instance_profile_name
-}
+# IAM module not needed at this time - code will be retained for future projects or usage
+# module "iam" {
+#   source                    = "../modules/iam" # Updated relative path
+#   ec2_role_name             = "ec2-role"
+#   ec2_instance_profile_name = "ec2-instance-profile"
+#   ec2_policy_name           = "ec2-policy"
+#   ec2_policy_document = jsonencode({
+#     "Version" : "2012-10-17",
+#     "Statement" : [
+#       {
+#         "Action" : [
+#           "s3:ListBucket",
+#           "s3:GetObject"
+#         ],
+#         "Effect" : "Allow",
+#         "Resource" : "*"
+#       }
+#     ]
+#   })
+# }
 
-module "rds" {
-  source            = "../modules/rds" # Updated relative path
-  vpc_id            = module.vpc.vpc_id
-  private_subnet1   = element(module.vpc.private_subnet_ids, 0)
-  private_subnet2   = element(module.vpc.private_subnet_ids, 1)
-  db_username       = var.db_username
-  db_password       = var.db_password
-  security_group_id = module.security_groups.rds_security_group_id
-}
+# module "ec2" {
+#   source               = "../modules/ec2" # Updated relative path
+#   vpc_id               = module.vpc.vpc_id
+#   public_subnet1       = element(module.vpc.public_subnet_ids, 0)
+#   public_subnet2       = element(module.vpc.public_subnet_ids, 1)
+#   private_subnet1      = element(module.vpc.private_subnet_ids, 0)
+#   private_subnet2      = element(module.vpc.private_subnet_ids, 1)
+#   instance_count       = var.instance_count
+#   instance_type        = var.instance_type
+#   ec2_key_pair         = var.ec2_key_pair
+#   security_group_id    = module.security_groups.ec2_security_group_id
+#   iam_instance_profile = module.iam.ec2_instance_profile_name
+# }
 
-module "alb" {
-  source            = "../modules/alb" # Updated relative path
-  vpc_id            = module.vpc.vpc_id
-  public_subnet1    = element(module.vpc.public_subnet_ids, 0)
-  public_subnet2    = element(module.vpc.public_subnet_ids, 1)
-  instance_ids      = module.ec2.instance_ids
-  security_group_id = module.security_groups.elb_security_group_id
-}
+# module "rds" {
+#   source            = "../modules/rds" # Updated relative path
+#   vpc_id            = module.vpc.vpc_id
+#   private_subnet1   = element(module.vpc.private_subnet_ids, 0)
+#   private_subnet2   = element(module.vpc.private_subnet_ids, 1)
+#   db_username       = var.db_username
+#   db_password       = var.db_password
+#   security_group_id = module.security_groups.rds_security_group_id
+# }
+
+# module "alb" {
+#   source            = "../modules/alb" # Updated relative path
+#   vpc_id            = module.vpc.vpc_id
+#   public_subnet1    = element(module.vpc.public_subnet_ids, 0)
+#   public_subnet2    = element(module.vpc.public_subnet_ids, 1)
+#   instance_ids      = module.ec2.instance_ids
+#   security_group_id = module.security_groups.elb_security_group_id
+# }
