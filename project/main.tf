@@ -43,13 +43,13 @@ resource "aws_instance" "ec2_instance" {
   instance_type = "t2.micro"
 }
 
-module "vpc" {
-  source                     = "../modules/vpc" # Updated relative path
-  region                     = var.region
-  vpc_cidr_block             = var.vpc_cidr_block
-  public_subnet_cidr_blocks  = var.public_subnet_cidr_blocks
-  private_subnet_cidr_blocks = var.private_subnet_cidr_blocks
-}
+# module "vpc" {
+#   source                     = "../modules/vpc" # Updated relative path
+#   region                     = var.region
+#   vpc_cidr_block             = var.vpc_cidr_block
+#   public_subnet_cidr_blocks  = var.public_subnet_cidr_blocks
+#   private_subnet_cidr_blocks = var.private_subnet_cidr_blocks
+# }
 
 # module "security_groups" {
 #   source = "../modules/security_groups" # Updated relative path
