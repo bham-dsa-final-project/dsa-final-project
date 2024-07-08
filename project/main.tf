@@ -51,40 +51,40 @@ module "vpc" {
   private_subnet_cidr_blocks = var.private_subnet_cidr_blocks
 }
 
-module "security_groups" {
-  source = "../modules/security_groups" # Updated relative path
-  vpc_id = module.vpc.vpc_id
-  ec2_security_group_ingress = [
-    {
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    },
-    {
-      from_port   = 80
-      to_port     = 80
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  ]
-  rds_security_group_ingress = [
-    {
-      from_port       = 3306
-      to_port         = 3306
-      protocol        = "tcp"
-      security_groups = [module.security_groups.ec2_security_group_id]
-    }
-  ]
-  elb_security_group_ingress = [
-    {
-      from_port   = 80
-      to_port     = 80
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  ]
-}
+# module "security_groups" {
+#   source = "../modules/security_groups" # Updated relative path
+#   vpc_id = module.vpc.vpc_id
+#   ec2_security_group_ingress = [
+#     {
+#       from_port   = 22
+#       to_port     = 22
+#       protocol    = "tcp"
+#       cidr_blocks = ["0.0.0.0/0"]
+#     },
+#     {
+#       from_port   = 80
+#       to_port     = 80
+#       protocol    = "tcp"
+#       cidr_blocks = ["0.0.0.0/0"]
+#     }
+#   ]
+#   rds_security_group_ingress = [
+#     {
+#       from_port       = 3306
+#       to_port         = 3306
+#       protocol        = "tcp"
+#       security_groups = [module.security_groups.ec2_security_group_id]
+#     }
+#   ]
+#   elb_security_group_ingress = [
+#     {
+#       from_port   = 80
+#       to_port     = 80
+#       protocol    = "tcp"
+#       cidr_blocks = ["0.0.0.0/0"]
+#     }
+#   ]
+# }
 
 module "iam" {
   source                    = "../modules/iam" # Updated relative path
