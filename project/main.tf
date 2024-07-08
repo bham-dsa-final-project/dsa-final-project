@@ -88,6 +88,8 @@ resource "aws_instance" "ec2_instance" {
 #   ]
 # }
 
+
+# IAM module not needed at this time - code will be retained for future projects or usage
 # module "iam" {
 #   source                    = "../modules/iam" # Updated relative path
 #   ec2_role_name             = "ec2-role"
