@@ -3,7 +3,7 @@ resource "aws_lb" "app_alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [var.security_group_id]
-  subnets            = [var.public_subnet1, var.public_subnet2]
+  subnets            = var.subnet_ids
 
   enable_deletion_protection = false
 
@@ -22,7 +22,7 @@ resource "aws_lb_target_group" "app_tg" {
     interval            = 30
     path                = "/"
     timeout             = 5
-    healthy_threshold   = 2
+    healthy_threshold   = 5
     unhealthy_threshold = 2
     matcher             = "200"
   }
@@ -44,8 +44,8 @@ resource "aws_lb_listener" "app_listener" {
 }
 
 resource "aws_lb_target_group_attachment" "app_tg_attachment" {
-  count            = length(var.instance_ids)
+  for_each         = toset(var.instance_ids)
   target_group_arn = aws_lb_target_group.app_tg.arn
-  target_id        = element(var.instance_ids, count.index)
+  target_id        = each.value
   port             = 80
 }

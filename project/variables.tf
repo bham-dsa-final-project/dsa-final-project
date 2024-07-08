@@ -1,52 +1,90 @@
 variable "region" {
-  description = "The AWS region to deploy to"
+  description = "The region where AWS resources will be created"
   type        = string
-  default     = "eu-west-2"
-}
-
-variable "instance_count" {
-  description = "The number of EC2 instances"
-  type        = number
-  default     = 2
-}
-
-variable "instance_type" {
-  description = "The type of EC2 instance"
-  type        = string
-  default     = "t2.micro"
-}
-
-variable "ec2_key_pair" {
-  description = "The name of the EC2 key pair"
-  type        = string
-}
-
-variable "db_username" {
-  description = "The username for the RDS instance"
-  type        = string
-  default     = "admin"
-}
-
-variable "db_password" {
-  description = "The password for the RDS instance"
-  type        = string
-  sensitive   = true
 }
 
 variable "vpc_cidr_block" {
   description = "The CIDR block for the VPC"
   type        = string
-  default     = "10.0.0.0/16"
 }
 
 variable "public_subnet_cidr_blocks" {
-  description = "The CIDR blocks for the public subnets"
+  description = "List of CIDR blocks for public subnets"
   type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24"]
 }
 
 variable "private_subnet_cidr_blocks" {
-  description = "The CIDR blocks for the private subnets"
+  description = "List of CIDR blocks for private subnets"
   type        = list(string)
-  default     = ["10.0.3.0/24", "10.0.4.0/24"]
+}
+
+variable "availability_zones" {
+  description = "List of availability zones"
+  type        = list(string)
+}
+
+variable "name_prefix" {
+  description = "Prefix for naming resources"
+  type        = string
+}
+
+variable "instance_count" {
+  description = "Number of EC2 instances"
+  type        = number
+}
+
+variable "instance_type" {
+  description = "Type of EC2 instance"
+  type        = string
+}
+
+variable "ec2_key_pair" {
+  description = "Name of the EC2 key pair"
+  type        = string
+}
+
+variable "db_username" {
+  description = "Username for RDS instance"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Password for RDS instance"
+  type        = string
+  sensitive   = true
+}
+
+variable "iam_instance_profile" {
+  description = "IAM instance profile name"
+  type        = string
+}
+
+variable "ec2_security_group_ingress" {
+  description = "Ingress rules for EC2 security group"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+}
+
+variable "rds_security_group_ingress" {
+  description = "Ingress rules for RDS security group"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+}
+
+variable "elb_security_group_ingress" {
+  description = "Ingress rules for ELB security group"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
 }

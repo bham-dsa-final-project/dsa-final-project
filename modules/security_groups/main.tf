@@ -1,18 +1,14 @@
 resource "aws_security_group" "elb" {
   vpc_id = var.vpc_id
 
-  ingress {
-    from_port   = var.elb_security_group_ingress[0].from_port
-    to_port     = var.elb_security_group_ingress[0].to_port
-    protocol    = var.elb_security_group_ingress[0].protocol
-    cidr_blocks = var.elb_security_group_ingress[0].cidr_blocks
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+  dynamic "ingress" {
+    for_each = var.elb_security_group_ingress
+    content {
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      protocol    = ingress.value.protocol
+      cidr_blocks = ingress.value.cidr_blocks
+    }
   }
 
   tags = {
@@ -23,18 +19,14 @@ resource "aws_security_group" "elb" {
 resource "aws_security_group" "ec2" {
   vpc_id = var.vpc_id
 
-  ingress {
-    from_port   = var.ec2_security_group_ingress[0].from_port
-    to_port     = var.ec2_security_group_ingress[0].to_port
-    protocol    = var.ec2_security_group_ingress[0].protocol
-    cidr_blocks = var.ec2_security_group_ingress[0].cidr_blocks
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+  dynamic "ingress" {
+    for_each = var.ec2_security_group_ingress
+    content {
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      protocol    = ingress.value.protocol
+      cidr_blocks = ingress.value.cidr_blocks
+    }
   }
 
   tags = {
@@ -45,18 +37,14 @@ resource "aws_security_group" "ec2" {
 resource "aws_security_group" "rds" {
   vpc_id = var.vpc_id
 
-  ingress {
-    from_port       = var.rds_security_group_ingress[0].from_port
-    to_port         = var.rds_security_group_ingress[0].to_port
-    protocol        = var.rds_security_group_ingress[0].protocol
-    security_groups = var.rds_security_group_ingress[0].security_groups
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+  dynamic "ingress" {
+    for_each = var.rds_security_group_ingress
+    content {
+      from_port       = ingress.value.from_port
+      to_port         = ingress.value.to_port
+      protocol        = ingress.value.protocol
+      security_groups = ingress.value.security_groups
+    }
   }
 
   tags = {

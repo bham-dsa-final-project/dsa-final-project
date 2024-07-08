@@ -1,5 +1,5 @@
 variable "ec2_role_name" {
-  description = "The name of the EC2 role"
+  description = "The name of the EC2 IAM role"
   type        = string
   default     = "ec2-role"
 }

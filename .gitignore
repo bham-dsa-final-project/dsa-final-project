@@ -44,3 +44,4 @@ terraform.rc
 plan.tfplan
 plan.dot
 plan.png
+.code-workspace
