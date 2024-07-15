@@ -21,14 +21,14 @@ Prism is a platform that is an amalgamation of multiple Version 1 intranet servi
 
 Currently, these are served as separate services and are not integrated with each other. The goal of Prism is to provide a unified platform that integrates all these services and provides a seamless experience to the users.
 
-💻 Architecture Overview 💻 <a name ="architecture"></a>
+ <a name ="architecture"><h3 align="center">💻 Architecture Overview 💻</h3></a>
 
 The Prism infrastructure is hosted on AWS and is built using the following services:
 - AWS Fargate: For running the Prism services in containers without having to manage the underlying infrastructure.
 
 You can read more about our infratructure setup [here.](project_documentation/infrastructure.md)
 
-🔐 Keys & Secrets 🔐 <a name ="keys_secrets"></a>
+ <a name ="keys_secrets"><h3 align="center">🔐 Keys & Secrets 🔐</h3></a>
 
 The Prism infrastructure uses the following keys and secrets:
 - AWS_ACCESS_KEY_ID: The access key for the AWS account.
