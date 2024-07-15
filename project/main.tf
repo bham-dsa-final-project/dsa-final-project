@@ -25,11 +25,11 @@ provider "hcp" {}
 
 # I am unsure if the below vault code is needed - will test with team when they clone down to see if they can run a plan without it
 
-# provider "vault" {
-#   address     = "https://birmingham-dsa-cluster-public-vault-86e0f2b3.201d549e.z1.hashicorp.cloud:8200"
-#   token       = var.vault_token
-#   max_retries = 5
-# }
+provider "vault" {
+  address     = "https://birmingham-dsa-cluster-public-vault-86e0f2b3.201d549e.z1.hashicorp.cloud:8200"
+  token       = var.vault_token
+  max_retries = 5
+}
 
 # data "vault_generic_secret" "vault_secret_path" {
 #   path = "finalproject/access"

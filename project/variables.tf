@@ -51,12 +51,10 @@ variable "region" {
 #   default     = ["10.0.3.0/24", "10.0.4.0/24"]
 # }
 
-# variable "vault_token" {
-#   description = "The token for the Vault cluster"
-#   type        = string
-#   sensitive   = true
-#   default     = ""
-# }
+variable "vault_token" {
+  description = "The token for the Vault cluster"
+  type        = string
+}
 
 variable "AWS_SECRET_ACCESS_KEY" {
   type        = string
