@@ -11,7 +11,8 @@ Currently, these are served as separate services and are not integrated with eac
 
 The Prism infrastructure is hosted on AWS and is built using the following services:
 - AWS Fargate: For running the Prism services in containers without having to manage the underlying infrastructure.
-You can read more about our infratructure setup [here.](./project_documentation/infrastructure.md)
+
+You can read more about our infratructure setup [here.](project_documentation/infrastructure.md)
 
 🔐 Keys & Secrets 🔐
 
@@ -22,21 +23,21 @@ These are hosted in a hashicorp vault and are injected into the Prism infrastruc
 
 - VAULT_TOKEN: The token for accessing the hashicorp vault.
 This secret is hosted using Github Actions secrets and is injected into the Prism infrastructure at runtime via a Github Action workflow.
-You can read more about our best practices for managing keys and secrets [here.](/project_documentation/best_practices.md)
+You can read more about our best practices for managing keys and secrets [here.](project_documentation/best_practices.md)
 
 🔧 Deployment Process 🔧
 Prism uses Github Actions for CI/CD. The deployment process is as follows:
 - A developer completes a pull request and merges it into the main branch.
 - A Github Action workflow is triggered that builds the Prism services and deploys them to the AWS Fargate cluster.
-You can read more about our CI/CD process [here.](/project_documentation/cicd_pipeline.md)
+You can read more about our CI/CD process [here.](project_documentation/cicd_pipeline.md)
 
 📈 Monitoring & Logging 📈
 Prism uses AWS CloudWatch for monitoring and logging. The logs are stored in CloudWatch logs and can be accessed via the AWS console.
-You can read more about our monitoring and logging setup [here.](/project_documentation/maintenance.md)
+You can read more about our monitoring and logging setup [here.](project_documentation/maintenance.md)
 
 🪪 Security & Compliance 🪪
 Prism follows AWS best practices for security and compliance. The infrastructure is secured using IAM roles and policies, and access to the infrastructure is restricted to authorized users.
-You can read more about our security practices [here.](/project_documentation/security.md) and our compliance practices [here.](/project_documentation/compliance_governance.md)
+You can read more about our security practices [here.](project_documentation/security.md) and our compliance practices [here.](/project_documentation/compliance_governance.md)
 
 📚 Additional Resources 📚
 For more information on the Prism infrastructure, please refer to the following resources:
