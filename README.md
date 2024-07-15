@@ -1,4 +1,4 @@
-<h3 align="center"> PRISM INFRASTRUCTURE DOCUMENTATION </h3>
+<h2 align="center"> PRISM INFRASTRUCTURE DOCUMENTATION </h2>
 
 ---
 <p align="center"> Prism aims to be a one stop shop solution for Version 1 exployees who want to access Talentguard, Call-Out, Small Improvements and Hall of Fame. This documentation provides an overview of the Prism infrastructure and how it is built and maintained. </p>
@@ -14,7 +14,7 @@
 - [Conclusion](#conclusion)
 - [Acknowledgements](#acknowledgements)
 
-📃 Introducation & Problem Statement 📃 <a name = "problem_statement" align="center"></a>
+ <a name = "problem_statement"><h3 align="center">📃 Introducation & Problem Statement 📃</h3></a>
 
 This documenation is intended to provide a high-level overview of the Prism infrastructure. It is intended to be a living document and will be updated as the infrastructure evolves.
 Prism is a platform that is an amalgamation of multiple Version 1 intranet services that includes Talentguard, Call-Out, Small Improvements and Hall of Fame. 
