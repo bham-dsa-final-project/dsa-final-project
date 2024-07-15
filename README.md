@@ -25,6 +25,7 @@ Currently, these are served as separate services and are not integrated with eac
 
 The Prism infrastructure is hosted on AWS and is built using the following services:
 - AWS Fargate: For running the Prism services in containers without having to manage the underlying infrastructure.
+
 You can read more about our infratructure setup [here.](project_documentation/infrastructure.md)
 
 🔐 Keys & Secrets 🔐 <a name ="keys_secrets"></a>
