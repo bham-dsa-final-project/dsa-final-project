@@ -14,7 +14,7 @@
 - [Conclusion](#conclusion)
 - [Acknowledgements](#acknowledgements)
 
-📃 Introducation & Problem Statement 📃 <a name = "problem_statement"></a>
+📃 Introducation & Problem Statement 📃 <a name = "problem_statement" align="center"></a>
 
 This documenation is intended to provide a high-level overview of the Prism infrastructure. It is intended to be a living document and will be updated as the infrastructure evolves.
 Prism is a platform that is an amalgamation of multiple Version 1 intranet services that includes Talentguard, Call-Out, Small Improvements and Hall of Fame. 
