@@ -3,7 +3,7 @@
 ---
 <p align="center"> Prism aims to be a one stop shop solution for Version 1 exployees who want to access Talentguard, Call-Out, Small Improvements and Hall of Fame. This documentation provides an overview of the Prism infrastructure and how it is built and maintained. </p>
 
-<div align="center">
+<div justify="center">
  📝 Table of Contents 
 - [Introduction & Problem Statement](#problem_statement)
 - [Architecture Overview](#architecture)
