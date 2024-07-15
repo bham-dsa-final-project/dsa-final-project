@@ -1,1 +1,27 @@
 # This will be a custom workflow # 
+
+name: CI/CD Pipeline
+
+on:
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v4
+
+            - name: Install Terraform
+              uses: hashicorp/setup-terraform@v1
+              
+            - name: Terraform Init
+              run: terraform init
+              working-directory: ./project
+
+            - name: Terraform Apply
+              env: 
+                vault_token: ${{ secrets.VAULT_TOKEN }}
+              run: terraform apply -auto-approve  

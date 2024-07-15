@@ -1,2 +1,44 @@
-testing to ensure github is set up correctly - test 123 - Jack branch test 2
+PRISM INFRASTRUCTURE DOCUMENTATION
+
+📃 Introducation & Problem Statement 📃
+
+This documenation is intended to provide a high-level overview of the Prism infrastructure. It is intended to be a living document and will be updated as the infrastructure evolves.
+Prism is a platform that is an amalgamation of multiple Version 1 intranet services that includes Talentguard, Call-Out, Small Improvements and Hall of Fame. 
+
+Currently, these are served as separate services and are not integrated with each other. The goal of Prism is to provide a unified platform that integrates all these services and provides a seamless experience to the users.
+
+💻 Architecture Overview 💻
+
+The Prism infrastructure is hosted on AWS and is built using the following services:
+- AWS Fargate: For running the Prism services in containers without having to manage the underlying infrastructure.
+
+🔐 Keys & Secrets 🔐
+
+The Prism infrastructure uses the following keys and secrets:
+- AWS_ACCESS_KEY_ID: The access key for the AWS account.
+- AWS_SECRET_ACCESS_KEY: The secret key for the AWS account.
+These are hosted in a hashicorp vault and are injected into the Prism infrastructure at runtime via our Terraform scripts.
+
+- VAULT_TOKEN: The token for accessing the hashicorp vault.
+This secret is hosted using Github Actions secrets and is injected into the Prism infrastructure at runtime via a Github Action workflow.
+
+🔧 Deployment Process 🔧
+Prism uses Github Actions for CI/CD. The deployment process is as follows:
+- A developer completes a pull request and merges it into the main branch.
+- A Github Action workflow is triggered that builds the Prism services and deploys them to the AWS Fargate cluster.
+
+📈 Monitoring & Logging 📈
+Prism uses AWS CloudWatch for monitoring and logging. The logs are stored in CloudWatch logs and can be accessed via the AWS console.
+
+🪪 Security & Compliance 🪪
+Prism follows AWS best practices for security and compliance. The infrastructure is secured using IAM roles and policies, and access to the infrastructure is restricted to authorized users.
+
+📚 Additional Resources 📚
+For more information on the Prism infrastructure, please refer to the following resources:
+- Prism Github repository:
+- Prism infrastructure repository:
+- Prism documentation:
+
+📝 Conclusion 📝
+This document has provided an overview of the Prism infrastructure. For more information, please refer to the additional resources provided above. If you have any questions or feedback, please reach out to the Prism team. Thank you for reading!
 
